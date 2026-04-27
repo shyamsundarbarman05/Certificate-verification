@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Certificate Authenticity Verification System — detect tampering, verify signatures, and assess certificate legitimacy using document forensics and machine learning.">
+    <title>CertVerify — Advanced Certificate Authenticity System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=20260427">
+</head>
+<body>
+
+    <!-- ====== Animated Background ====== -->
+    <div class="bg-animation">
+        <div class="bg-orb bg-orb--1"></div>
+        <div class="bg-orb bg-orb--2"></div>
+        <div class="bg-orb bg-orb--3"></div>
+    </div>
+
+    <!-- ====== Header ====== -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <div class="header__brand">
+                <div class="header__logo">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 2L36 11V29L20 38L4 29V11L20 2Z" stroke="url(#logoGrad)" stroke-width="2.5" fill="none"/>
+                        <path d="M14 20L18 24L26 16" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs><linearGradient id="logoGrad" x1="4" y1="2" x2="36" y2="38"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="header__title">CertVerify</h1>
+                    <p class="header__subtitle">Advanced Authenticity Verification</p>
+                </div>
+            </div>
+            <nav class="header__nav">
+                <span class="header__status" id="systemStatus">
+                    <span class="status-dot status-dot--active"></span>
+                    System Online
+                </span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== Main Content ====== -->
+    <main class="main" id="mainContent">
+
+        <!-- ========== Upload Section ========== -->
+        <section class="section section--upload" id="uploadSection">
+            <div class="section__header">
+                <h2 class="section__title">Certificate Verification</h2>
+                <p class="section__desc">Upload a certificate document to verify its authenticity using advanced forensic analysis, OCR, and machine learning.</p>
+            </div>
+
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-zone__inner">
+                    <div class="upload-zone__icon">
+                        <svg viewBox="0 0 64 64" fill="none">
+                            <rect x="8" y="8" width="48" height="48" rx="8" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                            <path d="M32 20V44M24 28L32 20L40 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="upload-zone__title">Drop your certificate here</h3>
+                    <p class="upload-zone__text">or click to browse files</p>
+                    <div class="upload-zone__formats">
+                        <span class="format-badge">PDF</span>
+                        <span class="format-badge">JPG</span>
+                        <span class="format-badge">PNG</span>
+                    </div>
+                    <p class="upload-zone__limit">Maximum file size: 50 MB</p>
+                </div>
+                <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png,.tiff,.bmp,.webp" hidden multiple>
+            </div>
+
+            <!-- Files preview -->
+            <div class="file-preview-list" id="filePreviewList" style="display:none">
+                <!-- Injected by JS -->
+            </div>
+
+            <div class="upload-actions" id="uploadActions" style="display:none">
+                <button class="btn btn--outline" id="addMoreBtn">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg>
+                    Add More
+                </button>
+                <button class="btn btn--primary" id="verifyBtn">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM16 16l-3.5-3.5"/></svg>
+                    Verify All Files
+                </button>
+            </div>
+        </section>
+
+        <!-- ========== Processing Pipeline ========== -->
+        <section class="section section--pipeline" id="pipelineSection" style="display:none">
+            <div class="section__header">
+                <h2 class="section__title">Verification Pipeline</h2>
+                <p class="section__desc" id="pipelineDesc">Analysing your certificates through multiple verification modules…</p>
+            </div>
+            <div class="pipeline" id="pipeline">
+                <!-- Steps injected by JS -->
+            </div>
+            <div class="pipeline__progress">
+                <div class="pipeline__bar" id="pipelineBar"></div>
+            </div>
+        </section>
+
+        <!-- ========== Results Dashboard ========== -->
+        <section class="section section--results" id="resultsSection" style="display:none">
+            
+            <!-- Result Navigator (Batch Mode) -->
+            <div class="result-navigator" id="resultNavigator">
+                <div class="result-navigator__header">
+                    <h3 class="result-navigator__title">Verification Results</h3>
+                    <span class="result-navigator__count" id="resultCount">1 / 1</span>
+                </div>
+                <div class="result-list" id="resultList">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Top-level verdict -->
+            <div class="verdict-card" id="verdictCard">
+                <div class="verdict-card__gauge">
+                    <svg viewBox="0 0 200 200" class="gauge-svg" id="gaugeSvg">
+                        <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14"/>
+                        <circle cx="100" cy="100" r="85" fill="none" id="gaugeArc"
+                            stroke-width="14" stroke-linecap="round"
+                            stroke="url(#gaugeGrad)"
+                            stroke-dasharray="534" stroke-dashoffset="534"
+                            transform="rotate(-90 100 100)"/>
+                        <defs>
+                            <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#00d4ff"/>
+                                <stop offset="100%" stop-color="#10b981"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="gauge-value">
+                        <span class="gauge-number" id="gaugeNumber">0</span>
+                        <span class="gauge-label">Authenticity</span>
+                    </div>
+                </div>
+                <div class="verdict-card__info">
+                    <div class="verdict-badge" id="verdictBadge">Genuine</div>
+                    <p class="verdict-summary" id="verdictSummary">Loading…</p>
+                    <div class="verdict-meta">
+                        <span id="verdictConfidence">Confidence: —</span>
+                        <span id="verdictTime">Time: —</span>
+                        <span id="verdictMethod">Method: —</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Module Scores Grid -->
+            <div class="scores-grid" id="scoresGrid">
+                <!-- Injected by JS -->
+            </div>
+
+            <!-- Tabs for detailed results -->
+            <div class="tabs" id="resultTabs">
+                <button class="tab tab--active" data-tab="findings">Findings</button>
+                <button class="tab" data-tab="extracted">Extracted Data</button>
+                <button class="tab" data-tab="metadata">Metadata</button>
+                <button class="tab" data-tab="pipeline">Pipeline</button>
+            </div>
+
+            <!-- Tab panels -->
+            <div class="tab-panel tab-panel--active" id="panel-findings">
+                <div class="findings-list" id="findingsList"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-extracted">
+                <div class="extracted-data" id="extractedData"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-metadata">
+                <div class="metadata-info" id="metadataInfo"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-pipeline">
+                <div class="pipeline-details" id="pipelineDetails"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="results-actions">
+                <button class="btn btn--outline" id="newVerificationBtn">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg>
+                    New Verification
+                </button>
+                <button class="btn btn--primary" id="downloadReportBtn">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3v10M6 9l4 4 4-4M4 15h12"/></svg>
+                    Download Report
+                </button>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ====== Footer ====== -->
+    <footer class="footer">
+        <p>Advanced Certificate Authenticity Verification System &mdash; Powered by Document Forensics, OCR &amp; Machine Learning</p>
+    </footer>
+
+    <script src="/static/js/app.js?v=20260427"></script>
+</body>
+</html>

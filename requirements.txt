@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pymupdf
+opencv-python-headless
+numpy
+Pillow
+easyocr
+scikit-learn
+scikit-image
+xgboost
+jinja2
+aiofiles
