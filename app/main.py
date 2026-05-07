@@ -19,6 +19,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
+# --- Directories (ensure creation) -----------------------------------------------
+UPLOAD_DIR = os.environ.get("UPLOAD_DIR", "uploads")
+REPORTS_DIR = os.environ.get("REPORTS_DIR", "reports")
+STATIC_DIR = "static"
+
+# Create directories at startup
+for directory in [UPLOAD_DIR, REPORTS_DIR]:
+    os.makedirs(directory, exist_ok=True)
+
 # --- Module imports ----------------------------------------------------------
 from app.modules.document_processor import DocumentProcessor
 from app.modules.image_preprocessor import ImagePreprocessor
@@ -29,14 +38,6 @@ from app.modules.forensic_analyzer import ForensicAnalyzer
 from app.modules.ml_classifier import MLClassifier
 from app.modules.report_generator import ReportGenerator
 from app.modules.certificate_detector import CertificateDetector
-
-# --- Directories -------------------------------------------------------------
-UPLOAD_DIR = "uploads"
-REPORTS_DIR = "reports"
-STATIC_DIR = "static"
-
-for d in [UPLOAD_DIR, REPORTS_DIR]:
-    os.makedirs(d, exist_ok=True)
 
 # --- FastAPI app -------------------------------------------------------------
 app = FastAPI(

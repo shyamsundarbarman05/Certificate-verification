@@ -3,6 +3,9 @@ echo =====================================================
 echo   Advanced Certificate Authenticity Verification System
 echo =====================================================
 echo.
+echo NOTE: For Render deployment, use the web dashboard instead.
+echo For local development:
+echo.
 
 REM Create required directories
 if not exist "uploads" mkdir uploads

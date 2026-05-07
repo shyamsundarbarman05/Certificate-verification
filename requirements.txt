@@ -2,7 +2,7 @@ fastapi
 uvicorn[standard]
 python-multipart
 pymupdf
-opencv-python-headless
+opencv-python-headless==4.10.0.84
 numpy
 Pillow
 easyocr
@@ -11,3 +11,6 @@ scikit-image
 xgboost
 jinja2
 aiofiles
+torch
+torchvision
+Werkzeug
