@@ -71,6 +71,10 @@ cert_detector = CertificateDetector()
 # =============================================================================
 # Routes
 # =============================================================================
+@app.get("/")
+async def home():
+    return {"message": "Railway deployment working"}
+
 
 @app.get("/", response_class=FileResponse)
 async def root():
