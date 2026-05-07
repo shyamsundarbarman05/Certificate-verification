@@ -71,15 +71,12 @@ cert_detector = CertificateDetector()
 # =============================================================================
 # Routes
 # =============================================================================
-@app.get("/")
-async def home():
-    return {"message": "Railway deployment working"}
 
 
-# @app.get("/", response_class=FileResponse)
-# async def root():
-#     """Serve the frontend."""
-#     return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+@app.get("/", response_class=FileResponse)
+async def root():
+    """Serve the frontend."""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
 
 
 async def _process_verification(file: UploadFile, start_time: float) -> dict:
